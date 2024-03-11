@@ -1,1 +1,17 @@
+Terraform Flexible Deployment Options deployment to on-prem vanilla Kubernetes
+
+Certificate Generation
+
 openssl req -new -out terraform.csr -newkey rsa:2048 -nodes -sha256 -keyout terraform.key -config terraform.conf
+
+Prerequisites
+
+External requirements
+
+    Minio
+
+        Creates a standalone minio deployment to Kubernetes for testing.  Use an AWS S3 if you can use cloud or a production cluster of minio if not for dev.
+
+    PostGres SQL server
+
+    Redis Server
