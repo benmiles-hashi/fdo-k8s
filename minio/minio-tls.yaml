@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  tls.crt: <base64 encoded tls cert>
+  tls.key: <base64 encoded tls key>
+kind: Secret
+metadata:
+  name: minio-tls
+  namespace: default
+type: kubernetes.io/tls

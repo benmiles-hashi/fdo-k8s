@@ -1,0 +1,45 @@
+replicaCount: 1
+tls:
+  certData: <base64 encoded cert>
+  keyData: <base64 encoded key>
+  caCertData: <base64 encoded CA Cert>
+image:
+  repository: images.releases.hashicorp.com
+  name: hashicorp/terraform-enterprise
+  tag: v202401-2
+
+#resources:
+  # Uncomment resources if you are deploying to a smaller cluster or on a laptop.  Default is 2G RAM and 750m CPU
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+env:
+  variables:
+    TFE_RUN_PIPELINE_KUBERNETES_DEBUG_ENABLED: true
+    TFE_HOSTNAME: terraform.milab.local
+    TFE_IACT_SUBNETS: 192.168.30.0/24
+
+    # Database settings.
+    TFE_DATABASE_HOST: "10.0.0.130:5432"
+    TFE_DATABASE_NAME: "tfe"
+    TFE_DATABASE_PARAMETERS: "sslmode=disable"
+    TFE_DATABASE_USER: "postgres"
+
+    # Redis settings.
+    TFE_REDIS_HOST: 10.0.0.131
+    TFE_REDIS_USE_TLS: false
+    TFE_REDIS_USE_AUTH: true
+    TFE_REDIS_USER: tfe
+    # S3 settings. For Server Side Encryption settings, see to the configuration reference.
+    TFE_OBJECT_STORAGE_TYPE: s3
+    TFE_OBJECT_STORAGE_S3_BUCKET: tfe
+    TFE_OBJECT_STORAGE_S3_REGION: us-east-1
+    TFE_OBJECT_STORAGE_S3_ENDPOINT: http://10.0.0.204:9000
+    #TFE_OBJECT_STORAGE_S3_USE_INSTANCE_PROFILE: false
+  secrets:
+    TFE_DATABASE_PASSWORD: password
+    TFE_OBJECT_STORAGE_S3_ACCESS_KEY_ID: 
+    TFE_OBJECT_STORAGE_S3_SECRET_ACCESS_KEY:
+    TFE_REDIS_PASSWORD: password
+    TFE_LICENSE: 
+    TFE_ENCRYPTION_PASSWORD: P@ssw0rd

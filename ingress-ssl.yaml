@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - terraform.milab.local
+    secretName: terraform-tls
+  rules:
+  - host: terraform.milab.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: test
+            port:
+              number: 80
+        path: /
+        pathType: Prefix

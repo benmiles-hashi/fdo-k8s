@@ -1,0 +1,1 @@
+openssl req -new -out terraform.csr -newkey rsa:2048 -nodes -sha256 -keyout terraform.key -config terraform.conf

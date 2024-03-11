@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - minio.milab.local
+    secretName: minio-tls
+  rules:
+  - host: minio.milab.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: minio
+            port:
+              number: 9001
+        path: /
+        pathType: Prefix
